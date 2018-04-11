@@ -15,6 +15,7 @@ const
     '{ "ID": "id1", "Name": "John", "Age": 18, "Sex": true }, '+
     '{ "ID": "id2", "Name": "Mike", "Age": 20, "Sex": false } '+
     ']';
+  json_unicode = '{ "ID": "id1", "Name": "\u5f20\u4e09", "Age": 18, "Sex": true }';
 var
   jsonValue: TJsonValue;
   I: Integer;
@@ -46,6 +47,17 @@ begin
       Writeln('=========================');
     end;
     jsonValue.Free;
+
+    jsonValue := TJson.Parse(json_unicode);
+    Writeln('=========================');
+    Writeln('parse json: ', json_unicode);
+    Writeln('=========================');
+    Writeln('ID  : ', jsonValue.AsObjectGetString('ID'));
+    Writeln('Name: ', jsonValue.AsObjectGetString('Name'));
+    Writeln('Age : ', jsonValue.AsObjectGetInt('Age'));
+    Writeln('Sex : ', jsonValue.AsObjectGetBool('Sex'));
+    jsonValue.Free;
+
     ReadLn;
   except
     on E: Exception do

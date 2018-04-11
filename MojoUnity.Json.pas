@@ -801,7 +801,7 @@ begin
         begin
           escapedIndex := data.index;
           Inc(data.index);
-          case (data.json.Chars[data.index]) of
+          case (data.json.Chars[data.index-1]) of
             '"':
               begin
                 c := '"';
